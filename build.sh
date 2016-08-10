@@ -31,8 +31,7 @@ dockerPush() {
 
 dockerLogin() {
   echo "Extracting docker creds"
-  cat ./IN/$RES_DOCKER_CREDS/integration.json  | jq -r '.formJSONValues | map(.label + "=" + .value)|.[]' > dockerInt.sh
-  . dockerInt.sh
+  . ./IN/$RES_DOCKER_CREDS/integration.env
   echo "logging into Docker with username" $username
   docker login -u $username -p $password
   echo "Completed Docker login"
